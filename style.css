@@ -243,8 +243,8 @@ input {
 /* === App Window === */
 .app-window {
     position: absolute;
-    top: 0;
-    left: 0;
+    top: -10%;
+    left: -10%;
     width: 25vw;
     height: 38vh;
     border: 0.3vh solid #000080;
