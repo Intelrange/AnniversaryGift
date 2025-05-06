@@ -1,0 +1,253 @@
+﻿ <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>Escape Room</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+    <div class="room">
+        <!-- Background image is handled in CSS -->
+        <!-- Clickable Door -->
+        <div class="item door" onclick="checkDoor()"></div>
+
+        <!-- Clickable Cabinet -->
+        <div class="item cabinet" onclick="openPhoneBook()"></div>
+
+        <!-- Clickable Safe -->
+        <div class="item safe" onclick="openPopup('safe')"></div>
+
+        <!-- Clickable Telephone-->
+        <div class="item telephone" onclick="openTelephone()"></div>
+
+        <!-- Clickable desk-->
+        <div class="item desk" onclick="openDrawer('desk')"></div>
+
+        <!-- Unclickable Window-->
+        <div class="item window"></div>
+
+        <!-- Unclickable Clock-->
+        <div class="item clock" ></div>
+
+        <!-- Clickable Computer -->
+        <div class="item computer" onclick="openComputerScreen()"></div>
+
+        <!-- Unclickable Dundun3-->
+        <div class="item dundun3"></div>
+
+        <!-- Unclickable Dundun4-->
+        <div class="item dundun4"></div>
+
+        <!-- Unclickable Dundun5-->
+        <div class="item dundun5"></div>
+
+        <!-- Photo Frame 1 -->
+        <div class="item photo-frame1"
+             data-photo="photo1.png"
+             style="top: 17%; left: 25%; background-image: url('photo1.png');"
+             onclick="enlargePhoto(this)">
+        </div>
+
+        <!-- Photo Frame 2 -->
+        <div class="item photo-frame1"
+             data-photo="photo2.png"
+             style="top: 34%; left: 25%; background-image: url('photo2.png');"
+             onclick="enlargePhoto(this)">
+        </div>
+
+        <!-- Photo Frame 3 -->
+        <div class="item photo-frame2"
+             data-photo="photo3.png"
+             style="top: 28%; left: 18%; background-image: url('photo3.png');"
+             onclick="enlargePhoto(this)">
+        </div>
+
+        <!-- Photo Frame 4 -->
+        <div class="item photo-frame2"
+             data-photo="photo4.png"
+             style="top: 28%; left: 30.5%; background-image: url('photo4.png');"
+             onclick="enlargePhoto(this)">
+        </div>
+
+    </div>
+
+    <!-- Computer Screen Overlay -->
+    <div class="popup-overlay" id="computer-screen-overlay" onclick="closePopup('computer-screen')">
+        <div class="popup computer-screen" id="computer-screen-popup" onclick="event.stopPropagation()">
+            <div id="login-section">
+                <p class="screen-text">💻 System Booting... <br> Please enter password:</p>
+                <input type="text" id="computerPassword" placeholder="Enter password" />
+                <button onclick="checkComputerPassword()">Submit</button>
+            </div>
+            <!-- Desktop View with Icons (Initially Hidden) -->
+            <div id="computerDesktop" style="display: none;">
+
+                <div style="display: flex; gap: 30px; margin: 20px 0;">
+                    <div class="desktop-icon" onclick="openApp('notepad')">
+                        📝<br><span>Notepad</span>
+                    </div>
+                    <div class="desktop-icon" onclick="openApp('email')">
+                        📧<br><span>Email</span>
+                    </div>
+                    <div class="desktop-icon" onclick="openApp('browser')">
+                        🌐<br><span>Browser</span>
+                    </div>
+                </div>
+
+                <!-- App window area -->
+                <div class="app-window" id="notepad-window" style="display: none;">
+                    <div class="title-bar">
+                        <span>Notepad</span>
+                        <button onclick="closeApp()">✖</button>
+                    </div>
+                    <div class="menu-bar">File Edit Format View Help</div>
+                    <textarea class="notepad-area">It stretches farther,  
+Yet makes no sound.  
+It traces the edge of every hour,  
+But never stays around.
+
+Its sibling sits closer to the heart,  
+Moving slower, step by step.
+
+Follow the one that reaches out.  
+It shall whisper the secret you seek.</textarea>
+                </div>
+
+                <div class="app-window" id="email-window" style="display: none;">
+                    <div class="title-bar">
+                        <span>Inbox - Outlook Express</span>
+                        <button onclick="closeApp()">✖</button>
+                    </div>
+                    <div class="menu-bar">File Edit View Tools Help</div>
+                    <div class="email-body">
+                        <p><strong>From:</strong> fartingemperor@hints.com</p>
+                        <p><strong>Subject:</strong> The Frozen Sentinels</p>
+                        <p>
+                            The golden border shines so bright,
+                            Within the frame, towers stood in plain sight.
+                            Not many, but just enough,
+                            To guide you through the cold and rough.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="app-window" id="browser-window" style="display: none;">
+                    <div class="title-bar">
+                        <span>Internet Explorer</span>
+                        <button onclick="closeApp()">✖</button>
+                    </div>
+                    <div class="menu-bar">File Edit View Favorites Tools Help</div>
+                    <div class="browser-toolbar">
+                        <button>◀</button> <button>▶</button>
+                        <input type="text" value="http://escape.hints/room" />
+                        <button>Go</button>
+                    </div>
+                    <div class="browser-body">
+                        <img src="One.png" alt="Puzzle Clue" style="width: 100%; max-width: 600px; margin-top: 10px; border: 1px solid #ccc; border-radius: 4px;" />
+                    </div>
+                </div>
+
+
+            </div>
+
+            <button onclick="closePopup('computer-screen')">Close</button>
+        </div>
+    </div>
+
+    <!-- Confirmation Overlay -->
+    <div id="confirmation-overlay" class="overlay">
+        <div class="overlay-content" onclick="event.stopPropagation()">
+            <h2>📘 You have obtained a phonebook</h2>
+            <div style="margin-top: 20px;">
+                <button onclick="confirmOpenPhoneBook()">Open</button>
+                <button onclick="closeConfirmation()">Close</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Phone Book Overlay -->
+    <div id="phone-book-overlay" class="overlay" onclick="closePhoneBook()">
+        <div class="overlay-content">
+            <h2>📖 Country Code List 📖</h2>
+            <ul class="code-list">
+                <li>+1 — United States</li>
+                <li>+44 — United Kingdom</li>
+                <li>+81 — Japan</li>
+                <li>+49 — Germany</li>
+                <li>+358 - Finland</li>
+                <li>+33 — France</li>
+                <li>+91 — India</li>
+                <li>+84 - Vietnam</li>
+                <li>+61 — Australia</li>
+                <li>+234 — Nigeria</li>
+                <li>+372 - Estonia</li>
+                <li>+86 — China</li>
+                <li>+852 - Hong Kong</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Safe Popup Overlay -->
+    <div id="safe-overlay" class="overlay" onclick="closeSafe()">
+        <div class="overlay-content" onclick="event.stopPropagation()">
+            <p>🔐 Enter the passcode to open the safe:</p>
+            <input type="text" id="safePasscode" maxlength="4" placeholder="4-digit code" />
+            <button onclick="checkSafeCode()">Unlock</button>
+
+            <!-- Message area for success/failure -->
+            <div id="safe-message" style="margin-top: 10px; color: red;"></div>
+
+            <!-- Hidden key (initially hidden with CSS `display: none`) -->
+            <div id="key" style="display: none; margin-top: 15px;">
+                🗝️ You found a small key inside the safe!
+            </div>
+
+            <button onclick="closePopup('safe')">Close</button>
+        </div>
+    </div>
+
+
+    <!-- Telephone Overlay-->
+    <div id="telephone-overlay" class="overlay" onclick="closeTelephone()">
+        <div class="overlay-content" style="font-size: 0.85em;">
+            <p style="font-size: 1.2em;">📞 A voice mail</p>
+
+            <p>Hey dear...happy Anniversary!</p>
+            <p>Hope you like this gift.</p>
+            <p>Anyway, here is a mini riddle for you to solve!</p>
+            <p>Framed and hung in a cross, our journey unfolds.</p>
+            <p>Trace each journey to their motherland,</p>
+            <p>and let its totality guide your hand.</p>
+            <p>Can't wait to see where you'll take us next, perhaps somewhere safe this time?</p>
+
+        </div>
+    </div>
+
+    <!-- Shared Overlay for Enlarged Photo -->
+    <div id="photo-overlay" class="photo-overlay" onclick="closePhoto()">
+        <img id="enlarged-photo" src="" alt="Zoomed Photo" />
+    </div>
+
+    <!-- Door Popup Overlay -->
+    <div class="popup-overlay" id="door-overlay" onclick="closePopup('door')">
+        <div class="popup" id="door-popup" onclick="event.stopPropagation()">
+            <p>🔒 Enter code to unlock:</p>
+            <input type="text" id="codeInput" maxlength="3" placeholder="3-digit code" />
+            <button onclick="checkCode()">Unlock</button>
+            <div id="codeMessage"></div>
+            <button onclick="closePopup('door')">Close</button>
+        </div>
+    </div>
+
+    <!-- Drawer Popup Overlay -->
+    <div id="drawer-overlay" class="overlay" onclick="closeDrawer()">
+        <div class="overlay-content" id="drawer-content" onclick="event.stopPropagation()">
+            <!-- Content will be inserted via JavaScript -->
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+
+</body>
+</html>

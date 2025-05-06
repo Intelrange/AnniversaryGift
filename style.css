@@ -1,0 +1,341 @@
+﻿/* === Reset & Base Styles === */
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    font-family: sans-serif;
+    font-size: clamp(12px, 1.5vw, 18px);
+}
+
+/* === Main Room Background === */
+.room {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    background-image: url("room.jpg");
+    background-size: cover;
+    background-position: center;
+}
+
+/* === Base Clickable Item Style === */
+.item {
+    position: absolute;
+    cursor: pointer;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+/* === Object Positions (percent-based for scaling) === */
+.door {
+    top: 21%;
+    left: 35%;
+    width: 22%;
+    height: 74%;
+    background-image: url('door.png');
+}
+
+.window {
+    top: 26%;
+    left: 56.5%;
+    width: 25%;
+    height: 32%;
+    background-image: url('window.png');
+}
+
+.clock {
+    top: 53%;
+    left: 72%;
+    width: 7%;
+    height: 15%;
+    background-image: url('clock.png');
+}
+
+.telephone {
+    top: 51%;
+    left: 20%;
+    width: 6%;
+    height: 7%;
+    background-image: url('telephone.png');
+}
+
+.cabinet {
+    top: 50%;
+    left: 15%;
+    width: 23%;
+    height: 42%;
+    background-image: url('cabinet.png');
+}
+
+.safe {
+    top: 48.5%;
+    left: 26%;
+    width: 7%;
+    height: 11%;
+    background-image: url('safebox.png');
+}
+
+.desk {
+    top: 67%;
+    left: 55.4%;
+    width: 29.6%;
+    height: 23.6%;
+    background-image: url('desk.png');
+}
+
+.computer {
+    top: 49.5%;
+    left: 62%;
+    width: 10%;
+    height: 20%;
+    background-image: url('Computer.png');
+}
+
+.dundun3 {
+    top: 76%;
+    left: 30%;
+    width: 8%;
+    height: 18%;
+    background-image: url('dundun3.png');
+}
+
+.dundun4 {
+    top: 74%;
+    left: 23%;
+    width: 8%;
+    height: 19%;
+    background-image: url('dundun4.png');
+}
+
+.dundun5 {
+    top: 74%;
+    left: 15%;
+    width: 8%;
+    height: 18%;
+    background-image: url('dundun5.png');
+}
+
+/* === Photo Frames === */
+.photo-frame1,
+.photo-frame2 {
+    position: absolute;
+    background-size: cover;
+    background-repeat: no-repeat;
+    cursor: pointer;
+}
+
+.photo-frame1 {
+    width: 5.2%;
+    height: 14.7%;
+}
+
+.photo-frame2 {
+    width: 6.7%;
+    height: 9.6%;
+}
+
+/* === Overlays (photo and generic) === */
+.photo-overlay,
+.overlay,
+.popup-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    justify-content: center;
+    align-items: center;
+    z-index: 999;
+}
+
+.photo-overlay,
+.overlay {
+    background: rgba(0, 0, 0, 0.85);
+}
+
+.popup-overlay {
+    background: rgba(0, 0, 0, 0.5);
+}
+
+.photo-overlay img {
+    max-width: 40vw;
+    max-height: 40vh;
+    border: 0.5vw solid white;
+    border-radius: 1vw;
+    box-shadow: 0 0 3vw rgba(0, 0, 0, 0.5);
+}
+
+/* === Overlay Content === */
+.overlay-content {
+    background: #fff;
+    padding: 0.6vw;
+    max-width: 35vw;
+    border-radius: 0.6vw;
+    text-align: left;
+    color: #222;
+    font-family: 'Courier New', monospace;
+    box-shadow: 0 0 2vw rgba(0, 0, 0, 0.4);
+}
+
+.code-list {
+    list-style: none;
+    padding: 0;
+    margin: 2vh 0;
+}
+
+.code-list list {
+    padding: 0.8vh 0;
+}
+
+/* === Popup Box === */
+.popup {
+    background: white;
+    padding: 0.6vh;
+    border-radius: 1vh;
+    max-width: 35vw;
+    box-shadow: 0 0 2vh rgba(0, 0, 0, 0.4);
+}
+
+/* === Inputs === */
+input {
+    padding: 0.8vh;
+    font-size: clamp(12px, 1.2vw, 14px);
+    margin: 1vh 0;
+}
+
+/* === Virtual Computer Desktop === */
+#computerDesktop {
+    display: none;
+    position: relative;
+    width: 35vw;
+    height: 50vh;
+    background-image: url('Microsoft.png');
+    background-size: cover;
+    background-position: center;
+    padding: 2vh;
+    box-sizing: border-box;
+    overflow: hidden;
+}
+
+.desktop-icon {
+    width: clamp(60px, 20vw, 90px);
+    text-align: center;
+    cursor: pointer;
+    font-size: clamp(10px, 2.5vh, 16px);
+    user-select: none;
+    color: white;
+    text-shadow: 0.1vh 0.1vh 0.2vh black;
+}
+
+.desktop-icon span {
+    font-size: clamp(8px, 1.2vh, 14px);
+    display: block;
+    margin-top: 0.5vh;
+    background-color: rgba(0, 0, 0, 0.5);
+    border-radius: 0.5vh;
+    padding: 0.3vh 0.6vh;
+}
+
+/* === App Window === */
+.app-window {
+    position: absolute;
+    width: 25vw;
+    height: 38vh;
+    border: 0.3vh solid #000080;
+    box-shadow: 0.4vh 0.4vh 1vh rgba(0, 0, 0, 0.4);
+    background-color: #ece9d8;
+    font-family: Tahoma, sans-serif;
+    display: none;
+    z-index: 10;
+}
+
+.title-bar {
+    background: linear-gradient(to right, #000080, #3366cc);
+    color: white;
+    padding: 0.6vh 1vh;
+    font-weight: bold;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: move;
+}
+
+.menu-bar {
+    background: #d4d0c8;
+    padding: 0.5vh 1vh;
+    font-size: 1.3vh;
+}
+
+textarea.notepad-area {
+    width: 90%;
+    height: 25vh;
+    text-align: left;
+    padding: 1vh;
+    font-family: 'Courier New', Courier, monospace;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    border: 0.1vh solid #ccc;
+    background-color: #fff;
+    resize: none;
+}
+
+.email-body {
+    background-color: white;
+    padding: 1vh;
+    font-size: 1.5vh;
+    height: 25vh;
+    overflow-y: auto;
+    border-top: 0.1vh solid #999;
+}
+
+.browser-toolbar {
+    background-color: #f1f1f1;
+    padding: 0.5vh;
+    display: flex;
+    gap: 0.5vh;
+    align-items: center;
+}
+
+.browser-toolbar input {
+    flex: 1;
+    padding: 0.5vh;
+    font-size: 1.3vh;
+}
+
+.browser-body {
+    background: white;
+    padding: 1vh;
+    font-size: 1.5vh;
+    height: 25vh;
+    width: 25vw;
+    overflow-y: auto;
+}
+
+/* === Media Query Fallback (Optional) === */
+@media (max-width: 300px) {
+    .desktop-icon {
+        font-size: 2vh;
+    }
+
+    .app-window {
+        width: 20vw;
+        height: 23vh;
+    }
+
+    #computerDesktop {
+        width: 20vw;
+        height: 23vh;
+    }
+}
+
+
+
+
+
+
+
+
